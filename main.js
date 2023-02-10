@@ -14,7 +14,7 @@ app.use(async (ctx, next) => {
     const shaStr = encryption.sha1(str)
     console.group()
     console.log(`method--${method}`)
-    console.log(`用户所发送的信息j--${ctx.echostr}`)
+    console.log(`ctx.path--${ctx.path}`)
     console.groupEnd()
     if (method === 'GET') {
         if (shaStr === signature) {
