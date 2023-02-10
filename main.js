@@ -4,6 +4,7 @@ const config = require('./config')
 const app = new Koa()
 const {port, token} = config
 
+console.log('encryption', encryption)
 app.use(async (ctx, next) => {
     const {method} = ctx
     let { signature = '', timestamp = '', nonce = '', echostr = '' } = ctx.query
