@@ -12,7 +12,10 @@ app.use(async (ctx, next) => {
     let str = [token, timestamp, nonce].sort().join('')
     // 将3个参数字符串拼接成字符串进行sha1加密
     const shaStr = encryption.sha1(str)
-    console.log('method', method)
+    console.group()
+    console.log(`method--${method}`)
+    console.log(`用户所发送的信息j--${ctx.echostr}`)
+    console.groupEnd()
     if (method === 'GET') {
         if (shaStr === signature) {
             ctx.body = echostr
