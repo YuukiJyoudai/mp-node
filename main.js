@@ -14,7 +14,7 @@ app.use(async (ctx, next) => {
     const shaStr = encryption.sha1(str)
     console.group()
     console.log(`method--${method}`)
-    console.log(`ctx.path--${ctx.path}`)
+    console.log(`ctx.path--${ctx.query}`)
     console.groupEnd()
     if (method === 'GET') {
         if (shaStr === signature) {
