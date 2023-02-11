@@ -27,6 +27,7 @@ app.use(async (ctx, next) => {
             ctx.body = '服务器验证失败'
         }
     } else if (method === 'POST') {
+        console.log('用户输入', ctx.request.body)
         // 打印用户当前输入的内容是什么
         const userText = ctx.request.body && ctx.request.body.xml && ctx.request.body.xml.MsgType && ctx.request.body.xml.MsgType[0]
         console.log('用户发送了如下信息', userText)
