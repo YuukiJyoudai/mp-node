@@ -29,16 +29,19 @@ app.use(async (ctx, next) => {
     } else if (method === 'POST') {
         console.log('用户输入', ctx.request.body)
         // 打印用户当前输入的内容是什么
-        const userText = ctx.request.body && ctx.request.body.xml && ctx.request.body.xml.MsgType && ctx.request.body.xml.MsgType[0]
-        console.log('用户发送了如下信息', userText)
-
-        // 这么简单？？？直接返回
-        // <ToUserName><![CDATA[${message.FromUserName}]]></ToUserName>
-        // <FromUserName><![CDATA[${message.ToUserName}]]></FromUserName>
+        const xmlObj = ctx.request.body && ctx.request.body.xml && ctx.request.body.xml
+        const msgType = xmlObj.MsgType[0]
+        const msgContent = xmlObj.Content[0]
+        const msgId = xmlObj.MsgId[0]
+        const to = xmlObj.ToUserName[0]
+        const from = xmlObj.FromUserName[0]
+        console.log('用户发送了如下信息:', msgContent)
         ctx.body = `
             <xml>
+                <ToUserName><![CDATA[${from}]]></ToUserName>
+                <FromUserName><![CDATA[${to}]]></FromUserName>
                 <CreateTime>${new Date().getTime()}</CreateTime>
-                <MsgType><![CDATA[text]]></MsgType>
+                <MsgType><![CDATA[${msgType}]]></MsgType>
                 <Content><![CDATA[欢迎来到我的公众号]]></Content>
             </xml>
         `
