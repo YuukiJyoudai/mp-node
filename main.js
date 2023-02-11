@@ -4,7 +4,6 @@ const config = require('./config')
 const app = new Koa()
 const {port, token} = config
 
-console.log('encryption', encryption)
 app.use(async (ctx, next) => {
     const {method} = ctx
     let { signature = '', timestamp = '', nonce = '', echostr = '' } = ctx.query
@@ -19,8 +18,8 @@ app.use(async (ctx, next) => {
             ctx.body = '服务器验证失败'
         }
     } else if (method === 'POST') {
-        console.log(`ctx.path--${ctx.pah}`)
-        console.log(`ctx.query--${ctx.query}`)
+        console.dir(`ctx.path--${ctx.pah}`)
+        console.dir(`ctx.query--${ctx.query}`)
     }
 })
 
