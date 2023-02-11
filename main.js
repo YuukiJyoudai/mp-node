@@ -37,11 +37,12 @@ app.use(async (ctx, next) => {
         // <FromUserName><![CDATA[${message.ToUserName}]]></FromUserName>
         ctx.body = `
             <xml>
-            <CreateTime>${new Date().getTime()}</CreateTime>
-            <MsgType><![CDATA[text]]></MsgType>
-            <Content><![CDATA[欢迎来到我的公众号]]></Content>
+                <CreateTime>${new Date().getTime()}</CreateTime>
+                <MsgType><![CDATA[text]]></MsgType>
+                <Content><![CDATA[欢迎来到我的公众号]]></Content>
             </xml>
         `
+        console.log('看一下返回的结果', ctx.body)
     }
 })
 
