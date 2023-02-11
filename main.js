@@ -12,16 +12,15 @@ app.use(async (ctx, next) => {
     let str = [token, timestamp, nonce].sort().join('')
     // 将3个参数字符串拼接成字符串进行sha1加密
     const shaStr = encryption.sha1(str)
-    console.group()
-    console.log(`method--${method}`)
-    console.log(`ctx.path--${ctx.query}`)
-    console.groupEnd()
     if (method === 'GET') {
         if (shaStr === signature) {
             ctx.body = echostr
         } else {
             ctx.body = '服务器验证失败'
         }
+    } else if (method === 'POST') {
+        console.log(`ctx.path--${ctx.pah}`)
+        console.log(`ctx.query--${ctx.query}`)
     }
 })
 
